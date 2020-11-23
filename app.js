@@ -88,7 +88,7 @@ passport.use(new GoogleStrategy({
     clientID:"557133545122-9jn02fulios76v0spau5s9mtcc53a35d.apps.googleusercontent.com",
     //clientSecret: process.env.CLIENT_SECRET,
     clientSecret:"UaUu4zt0L4_IeZPKMfc9vtne",
-    callbackURL: "http://localhost:3000/auth/google/secrets",
+    callbackURL: "https://secret-thicket-85908.herokuapp.com/auth/google/secrets",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function (accessToken, refreshToken, profile, cb) {
@@ -106,7 +106,7 @@ passport.use(new FacebookStrategy({
     clientID:"302522090857241",
     //clientSecret: process.env.APP_SECRET,
     clientSecret:"2ad7eebc12a6fe373027cd4e309e640e",
-    callbackURL: "http://localhost:3000/auth/facebook/secrets"
+    callbackURL: "https://secret-thicket-85908.herokuapp.com/auth/facebook/secrets"
   },
   function (accessToken, refreshToken, profile, cb) {
     User.findOrCreate({
