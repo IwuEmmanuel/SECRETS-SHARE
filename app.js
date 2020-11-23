@@ -23,8 +23,7 @@ app.use(bodyParser.urlencoded({
 
 // Initialising express sesssion
 app.use(session({
-  //secret: process.env.SECRET,
-  secret:"Thisismysecretfordatabase",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -36,7 +35,7 @@ app.use(passport.session());
 
 
 //Connecting to mongoose
-mongoose.connect("mongodb+srv://emmanuelUser:iwu@testcluster.04p4y.mongodb.net/userDB",
+mongoose.connect(process.env.PASSWORD,
 {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -84,11 +83,9 @@ passport.deserializeUser(function (id, done) {
 
 //Using Google Oauth20 for authentication
 passport.use(new GoogleStrategy({
-    //clientID: process.env.CLIENT_ID,
-    clientID:"557133545122-9jn02fulios76v0spau5s9mtcc53a35d.apps.googleusercontent.com",
-    //clientSecret: process.env.CLIENT_SECRET,
-    clientSecret:"UaUu4zt0L4_IeZPKMfc9vtne",
-    callbackURL: "https://secret-thicket-85908.herokuapp.com/auth/google/secrets",
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/secrets",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function (accessToken, refreshToken, profile, cb) {
@@ -102,11 +99,9 @@ passport.use(new GoogleStrategy({
 
 // Using facebook authenticantion initialise
 passport.use(new FacebookStrategy({
-    //clientID: process.env.APP_ID,
-    clientID:"302522090857241",
-    //clientSecret: process.env.APP_SECRET,
-    clientSecret:"2ad7eebc12a6fe373027cd4e309e640e",
-    callbackURL: "https://secret-thicket-85908.herokuapp.com/auth/facebook/secrets"
+    clientID: process.env.APP_ID,
+    clientSecret: process.env.APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/secrets"
   },
   function (accessToken, refreshToken, profile, cb) {
     User.findOrCreate({
