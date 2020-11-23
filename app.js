@@ -23,7 +23,8 @@ app.use(bodyParser.urlencoded({
 
 // Initialising express sesssion
 app.use(session({
-  secret: process.env.SECRET,
+  //secret: process.env.SECRET,
+  secret:"Thisismysecretfordatabase",
   resave: false,
   saveUninitialized: false
 }));
